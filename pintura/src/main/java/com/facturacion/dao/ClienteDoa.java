@@ -100,7 +100,27 @@ public class ClienteDoa {
 			return lista;
 		}
 	}
-	
+	public List<Cliente> getAllByName(String nombre, String apellido){
+		Session session = HibernateUtil.getSession();
+		List<Cliente> lista = new ArrayList<Cliente>();
+		try {
+			lista = session.createQuery("from com.facturacion.entitys.Cliente c"+
+					"WHERE nombre LIKE ' " + nombre +" %' OR" +
+					"nombre LIKE '% " + nombre +" %' OR" +
+					"nombre LIKE '% " + nombre +" ' AND"
+							+ "apellido LIKE ' "+apellido+"%' OR"
+							+ "apellido LIKE '% "+apellido+" %' OR"
+							+ "apellido LIKE '% " +apellido+ " ' "
+					).list();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally{
+			HibernateUtil.shutdown();
+			return lista;
+		}
+	}
 	
 
 }
