@@ -12,7 +12,7 @@
 		
 		<!-- ESTO CREA LA BASE A PARTIR DE LAS ENTIDADES -->
 		 <property name="hibernate.hbm2ddl.auto">create</property>
-		<mapping class="com.facturacion.entitys.Cliente"></mapping>
+		<mapping class="com.facturacion.entitys.Proveedor"></mapping>
 		<!-- <mapping class="edu.utn.dto.Vehiculo"></mapping> -->
 		
 	</session-factory>
