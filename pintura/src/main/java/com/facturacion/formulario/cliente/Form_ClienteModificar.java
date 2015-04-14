@@ -45,6 +45,7 @@ public class Form_ClienteModificar extends JFrame {
 
 	private static FormCliente formCliente;
 	private Long id;
+	private float deuda;
 
 	/**
 	 * Create the frame.
@@ -278,7 +279,7 @@ public class Form_ClienteModificar extends JFrame {
 				txtTelefono.setText(cliente.getTelefono());
 				txtMail.setText(cliente.getMail());
 				txtDescuento.setText(String.valueOf(cliente.getDescuento()));
-				// DEUDA ? 
+				deuda = cliente.getDeuda();// DEUDA ? 
 				cmbTipoCliente.setSelectedItem(cliente.getAfiliacionSocial());
 			}	
 		}
@@ -303,7 +304,7 @@ public class Form_ClienteModificar extends JFrame {
 		formCliente.setTelefono(txtTelefono.getText().trim().toString());
 		formCliente.setMail(txtMail.getText().toUpperCase().trim().toString());
 		formCliente.setAfiliacionSocial((String)cmbTipoCliente.getSelectedItem().toString());
-		formCliente.setDeuda("0");
+		formCliente.setDeuda(String.valueOf(deuda));
 		formCliente.setDescuento(txtDescuento.getText().trim().toString());
 		formCliente.setEstado(true);
 	
