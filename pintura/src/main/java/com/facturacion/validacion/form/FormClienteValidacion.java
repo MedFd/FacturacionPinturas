@@ -66,11 +66,11 @@ public class FormClienteValidacion {
 	CampoFormatoIncorrecto {
 		//telefono no debe ir letras
 		ClienteValidacion pv = new ClienteValidacion();
-		if (formCliente.getTelefono().equals(null))
+		if (formCliente.getDescuento().equals(null))
 			throw new CampoNulo("Descuento");
-		if (formCliente.getTelefono().equals(""))
+		if (formCliente.getDescuento().equals(""))
 			throw new CampoVacio("Descuento");
-		if (pv.validarDescuento(formCliente.getTelefono() ) == false)
+		if (pv.validarDescuento(formCliente.getDescuento() ) == false)
 			throw new CampoFormatoIncorrecto("Descuento", "numeros");
 	}
 	/*
@@ -80,7 +80,7 @@ public class FormClienteValidacion {
 	CampoFormatoIncorrecto {
 		//nombre solo letras
 		ClienteValidacion pv = new ClienteValidacion();
-		if (!formCliente.getLocalidad().equals(null) || formCliente.getApellido().equals("")){
+		if (!formCliente.getLocalidad().equals(null) || formCliente.getLocalidad().equals("")){
 			if (pv.validarLocalidad(formCliente.getLocalidad()) == false)
 				throw new CampoFormatoIncorrecto("Localidad", "letras");
 		}
