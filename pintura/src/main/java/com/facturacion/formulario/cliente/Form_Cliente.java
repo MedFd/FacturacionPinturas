@@ -76,6 +76,7 @@ public class Form_Cliente extends JFrame {
 		contentPane.add(label);
 		
 		txtClave1 = new JTextField();
+		txtClave1.setEditable(false);
 		txtClave1.setColumns(10);
 		txtClave1.setBounds(289, 122, 23, 19);
 		contentPane.add(txtClave1);
@@ -85,6 +86,7 @@ public class Form_Cliente extends JFrame {
 		contentPane.add(label_1);
 		
 		txtNombre = new JTextField();
+		txtNombre.setEditable(false);
 		txtNombre.setText("nombe");
 		txtNombre.setColumns(10);
 		txtNombre.setBounds(283, 180, 135, 19);
@@ -95,6 +97,7 @@ public class Form_Cliente extends JFrame {
 		contentPane.add(label_2);
 		
 		txtApellido = new JTextField();
+		txtApellido.setEditable(false);
 		txtApellido.setText("apellido");
 		txtApellido.setColumns(10);
 		txtApellido.setBounds(458, 179, 114, 19);
@@ -105,6 +108,7 @@ public class Form_Cliente extends JFrame {
 		contentPane.add(label_3);
 		
 		txtDireccion = new JTextField();
+		txtDireccion.setEditable(false);
 		txtDireccion.setText("Direccion");
 		txtDireccion.setColumns(10);
 		txtDireccion.setBounds(283, 238, 135, 19);
@@ -115,6 +119,7 @@ public class Form_Cliente extends JFrame {
 		contentPane.add(label_4);
 		
 		txtLocalidad = new JTextField();
+		txtLocalidad.setEditable(false);
 		txtLocalidad.setText("Localidad");
 		txtLocalidad.setColumns(10);
 		txtLocalidad.setBounds(458, 238, 114, 19);
@@ -125,6 +130,7 @@ public class Form_Cliente extends JFrame {
 		contentPane.add(label_5);
 		
 		txtTelefono = new JTextField();
+		txtTelefono.setEditable(false);
 		txtTelefono.setText("Telefono");
 		txtTelefono.setColumns(10);
 		txtTelefono.setBounds(283, 296, 129, 19);
@@ -135,6 +141,7 @@ public class Form_Cliente extends JFrame {
 		contentPane.add(label_6);
 		
 		txtDescuento = new JTextField();
+		txtDescuento.setEditable(false);
 		txtDescuento.setText("descuento");
 		txtDescuento.setColumns(10);
 		txtDescuento.setBounds(283, 349, 135, 19);
@@ -153,6 +160,7 @@ public class Form_Cliente extends JFrame {
 		contentPane.add(lblMail);
 		
 		txtMail = new JTextField();
+		txtMail.setEditable(false);
 		txtMail.setText("Mail");
 		txtMail.setBounds(458, 296, 114, 19);
 		contentPane.add(txtMail);
@@ -186,6 +194,7 @@ public class Form_Cliente extends JFrame {
 		contentPane.add(lblDeuda);
 		
 		txtDeuda = new JTextField();
+		txtDeuda.setEditable(false);
 		txtDeuda.setText("Deuda");
 		txtDeuda.setBounds(458, 349, 114, 19);
 		contentPane.add(txtDeuda);
@@ -196,11 +205,13 @@ public class Form_Cliente extends JFrame {
 		contentPane.add(btnVolver);
 		
 		txtClave2 = new JTextField();
+		txtClave2.setEditable(false);
 		txtClave2.setBounds(320, 122, 82, 19);
 		contentPane.add(txtClave2);
 		txtClave2.setColumns(10);
 		
 		textField = new JTextField();
+		textField.setEditable(false);
 		textField.setText("");
 		textField.setBounds(405, 122, 23, 19);
 		contentPane.add(textField);
