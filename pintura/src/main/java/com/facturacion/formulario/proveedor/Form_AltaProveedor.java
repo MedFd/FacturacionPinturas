@@ -169,46 +169,7 @@ public class Form_AltaProveedor extends JFrame {
 		//evento click del boton Aceptar
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					// Asigna los valores que al formProveedor
-					asignarJTextFields_String();
-					
-					// Tira las excepciones si algo esta mal
-					validarFormulario();
-			
-					// El contructori recibe formProveedor
-					Proveedor prov = new Proveedor(formProveedor);
-					
-					//buscar si existe un cliente con la clave ingresada
-					Long id = ProveedorBusqueda.getInstance().buscarIdPorObjeto(prov);
-					if (id != 0)
-						throw new RegistroExistente("proveedor", id);
-					
-					//guardar registro
-					if (ProveedorDao.getInstance().save(prov) == true) {
-						JOptionPane.showMessageDialog(null, "Se guard� el registro", 
-								"�xito", JOptionPane.INFORMATION_MESSAGE);
-						//cierra el formulario
-						dispose();
-					} else {
-						JOptionPane.showMessageDialog(null, "No se guard� el registro", 
-								"Fallo", JOptionPane.ERROR_MESSAGE);
-					}
-				} catch (CampoNulo ex) {
-					ex.mostrarMensaje();
-				} catch (CampoVacio ex) {
-					ex.mostrarMensaje();
-				} catch (CampoCantidadMinimaIncorrecta ex) {
-					ex.mostrarMensaje();
-				} catch (CampoFormatoIncorrecto ex) {
-					ex.mostrarMensaje();
-				} catch (RegistroExistente ex) {
-					ex.mostrarMensaje();
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, ex.getMessage(), 
-							"Error desconocido", JOptionPane.ERROR_MESSAGE);
-				} 
-				//fin try-catch
+				agregarProveedor();
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -254,6 +215,49 @@ public class Form_AltaProveedor extends JFrame {
 		validacion.validarFormulario_Nombre(formProveedor);
 		validacion.validarFormulario_Telefono(formProveedor);
 		
+	}
+	
+	private void agregarProveedor(){
+		try {
+			// Asigna los valores que al formProveedor
+			asignarJTextFields_String();
+			
+			// Tira las excepciones si algo esta mal
+			validarFormulario();
+	
+			// El contructori recibe formProveedor
+			Proveedor prov = new Proveedor(formProveedor);
+			
+			//buscar si existe un cliente con la clave ingresada
+			Long id = ProveedorBusqueda.getInstance().buscarIdPorObjeto(prov);
+			if (id != 0)
+				throw new RegistroExistente("proveedor", id);
+			
+			//guardar registro
+			if (ProveedorDao.getInstance().save(prov) == true) {
+				JOptionPane.showMessageDialog(null, "Se guard� el registro", 
+						"�xito", JOptionPane.INFORMATION_MESSAGE);
+				//cierra el formulario
+				dispose();
+			} else {
+				JOptionPane.showMessageDialog(null, "No se guard� el registro", 
+						"Fallo", JOptionPane.ERROR_MESSAGE);
+			}
+		} catch (CampoNulo ex) {
+			ex.mostrarMensaje();
+		} catch (CampoVacio ex) {
+			ex.mostrarMensaje();
+		} catch (CampoCantidadMinimaIncorrecta ex) {
+			ex.mostrarMensaje();
+		} catch (CampoFormatoIncorrecto ex) {
+			ex.mostrarMensaje();
+		} catch (RegistroExistente ex) {
+			ex.mostrarMensaje();
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage(), 
+					"Error desconocido", JOptionPane.ERROR_MESSAGE);
+		} 
+		//fin try-catch
 	}
 	
 }

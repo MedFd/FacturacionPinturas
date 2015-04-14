@@ -191,39 +191,7 @@ public class Form_ModificacionProveedor extends JFrame {
 		// evento click del boton Aceptar
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					//Asigno valores a la clase formProveedor
-					asignarJTextFields_String();
-					// Tiro las excepciones, trabajo con formProveedor
-					validarFormulario();
-
-					Proveedor prov = new Proveedor(formProveedor,id);
-
-					// Modifico registro
-					if (ProveedorDao.getInstance().update(prov) == true) {
-						JOptionPane.showMessageDialog(null,
-								"Se actualiz� el registro", "�xito",
-								JOptionPane.INFORMATION_MESSAGE);
-						// cierra el formulario
-						dispose();
-					} else {
-						JOptionPane.showMessageDialog(null,
-								"No se actualiz� el registro", "Fallo",
-								JOptionPane.ERROR_MESSAGE);
-					}
-				} catch (CampoNulo ex) {
-					ex.mostrarMensaje();
-				} catch (CampoVacio ex) {
-					ex.mostrarMensaje();
-				} catch (CampoCantidadMinimaIncorrecta ex) {
-					ex.mostrarMensaje();
-				} catch (CampoFormatoIncorrecto ex) {
-					ex.mostrarMensaje();
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, ex.getMessage(),
-							"Error desconocido", JOptionPane.ERROR_MESSAGE);
-				}
-				// fin try-catch
+				modificarProveedor();
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -351,5 +319,40 @@ public class Form_ModificacionProveedor extends JFrame {
 		validacion.validarFormulario_Nombre(formProveedor);
 		validacion.validarFormulario_Telefono(formProveedor);
 		
+	}
+	private void modificarProveedor(){
+		try {
+			//Asigno valores a la clase formProveedor
+			asignarJTextFields_String();
+			// Tiro las excepciones, trabajo con formProveedor
+			validarFormulario();
+
+			Proveedor prov = new Proveedor(formProveedor,id);
+
+			// Modifico registro
+			if (ProveedorDao.getInstance().update(prov) == true) {
+				JOptionPane.showMessageDialog(null,
+						"Se actualiz� el registro", "�xito",
+						JOptionPane.INFORMATION_MESSAGE);
+				// cierra el formulario
+				dispose();
+			} else {
+				JOptionPane.showMessageDialog(null,
+						"No se actualiz� el registro", "Fallo",
+						JOptionPane.ERROR_MESSAGE);
+			}
+		} catch (CampoNulo ex) {
+			ex.mostrarMensaje();
+		} catch (CampoVacio ex) {
+			ex.mostrarMensaje();
+		} catch (CampoCantidadMinimaIncorrecta ex) {
+			ex.mostrarMensaje();
+		} catch (CampoFormatoIncorrecto ex) {
+			ex.mostrarMensaje();
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage(),
+					"Error desconocido", JOptionPane.ERROR_MESSAGE);
+		}
+		// fin try-catch
 	}
 }
