@@ -1,11 +1,11 @@
 package com.facturacion.formulario.cliente;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -14,8 +14,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import com.facturacion.busquedas.ClienteBusqueda;
 import com.facturacion.dao.ClienteDao;
@@ -28,7 +30,7 @@ import com.facturacion.excepciones.CampoVacio;
 import com.facturacion.excepciones.RegistroExistente;
 import com.facturacion.validacion.form.FormClienteValidacion;
 
-public class Form_ClienteModificar extends JFrame {
+public class Form_ClienteModificar extends JFrame{
 
 	private JPanel contentPane;
 	private JTextField txtNombre;
@@ -50,7 +52,11 @@ public class Form_ClienteModificar extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Form_ClienteModificar(String identficiacion) {
+	//public Form_ClienteModificar(String identficiacion) {
+
+		//final String CUIT = identficiacion;
+	public Form_ClienteModificar(final Form_Cliente padre) {
+	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 653, 398);
 		contentPane = new JPanel();
@@ -156,14 +162,7 @@ public class Form_ClienteModificar extends JFrame {
 		txtDescuento.setColumns(10);
 		txtDescuento.setBounds(395, 88, 135, 19);
 		contentPane.add(txtDescuento);
-		txtDescuento.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				if (txtDescuento.getText().length() <= 3)
-					e.consume();
-			}
-		});
-		
+
 		JLabel label_18 = new JLabel("Tipo de cliente");
 		label_18.setBounds(220, 55, 113, 15);
 		contentPane.add(label_18);
@@ -238,6 +237,7 @@ public class Form_ClienteModificar extends JFrame {
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				modificarCliente();
+				actualizar(padre);
 			}
 		});
 		
@@ -258,16 +258,16 @@ public class Form_ClienteModificar extends JFrame {
 				limpiar();	
 			}
 		});
-		obtenerRegistroModificar(identficiacion);
+		obtenerRegistroModificar(padre.table);
 	}
 	/*
 	 * Obtener datos para modificar
 	 */
-	private void obtenerRegistroModificar(String identificacion){
+	private void obtenerRegistroModificar(JTable tabla){
 		
 		List<Cliente> lista = ClienteDao.getInstance().getAll();
 		for(Cliente cliente : lista){
-			if( cliente.getCUITCUIL().equals(identificacion)){
+			if( cliente.getCUITCUIL().equals((tabla.getValueAt(tabla.getSelectedRow(), 0)).toString())){
 				this.id = cliente.getId();
 				txtCUIT1.setText(cliente.getCUITCUIL().substring(0,2));
 				txtCUIT2.setText(cliente.getCUITCUIL().substring(3,12));
@@ -315,7 +315,7 @@ public class Form_ClienteModificar extends JFrame {
 		validacion.validarFormulario_Nombre(formCliente);
 		validacion.validarFormulario_Apellido(formCliente);
 		validacion.validarFormulario_Telefono(formCliente);
-		validacion.validarFormulario_Localidad(formCliente);
+		//validacion.validarFormulario_Localidad(formCliente);
 		validacion.validarFormulario_Descuento(formCliente);
 		//validacion.validarFormulario_Deuda(formCliente);
 		validacion.validarFormulario_Mail(formCliente);
@@ -340,6 +340,9 @@ public class Form_ClienteModificar extends JFrame {
 						"�xito", JOptionPane.INFORMATION_MESSAGE);
 				//cierra el formulario
 				dispose();
+				
+			
+				
 			} else {
 				JOptionPane.showMessageDialog(null, "No se guard� el registro", 
 						"Fallo", JOptionPane.ERROR_MESSAGE);
@@ -375,4 +378,10 @@ public class Form_ClienteModificar extends JFrame {
 		txtCUIT2.setText("");
 		txtCUIT3.setText("");
 	}
+	private void actualizar(Form_Cliente p ){
+		p.llenarJtablePorNombre();
+		
+	}
 }
+		
+		

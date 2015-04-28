@@ -1,7 +1,5 @@
 package com.facturacion.formulario.cliente;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -12,10 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 
 import com.facturacion.busquedas.ClienteBusqueda;
@@ -49,7 +45,7 @@ public class Form_ClienteAgregar extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Form_ClienteAgregar() {
+	public Form_ClienteAgregar(final Form_Cliente formC) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 653, 398);
 		contentPane = new JPanel();
@@ -155,13 +151,6 @@ public class Form_ClienteAgregar extends JFrame {
 		txtDescuento.setColumns(10);
 		txtDescuento.setBounds(395, 88, 135, 19);
 		contentPane.add(txtDescuento);
-		txtDescuento.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				if (txtDescuento.getText().length() <= 3)
-					e.consume();
-			}
-		});
 		
 		JLabel label_18 = new JLabel("Tipo de cliente");
 		label_18.setBounds(220, 55, 113, 15);
@@ -237,6 +226,7 @@ public class Form_ClienteAgregar extends JFrame {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				agregarCliente();
+				actualizar(formC);
 			}
 		});
 		
@@ -288,7 +278,7 @@ public class Form_ClienteAgregar extends JFrame {
 		validacion.validarFormulario_Nombre(formCliente);
 		validacion.validarFormulario_Apellido(formCliente);
 		validacion.validarFormulario_Telefono(formCliente);
-		validacion.validarFormulario_Localidad(formCliente);
+		//validacion.validarFormulario_Localidad(formCliente);
 		validacion.validarFormulario_Descuento(formCliente);
 		//validacion.validarFormulario_Deuda(formCliente);
 		validacion.validarFormulario_Mail(formCliente);
@@ -337,6 +327,10 @@ public class Form_ClienteAgregar extends JFrame {
 		dispose();
 	}
 	private void limpiar(){
+
+      
+
+		 
 		txtNombre.setText("");
 		txtApellido.setText("");
 		txtDireccion.setText("");
@@ -347,6 +341,10 @@ public class Form_ClienteAgregar extends JFrame {
 		txtCUIT1.setText("");
 		txtCUIT2.setText("");
 		txtCUIT3.setText("");
+	}
+	private void actualizar(Form_Cliente p ){
+		p.llenarJtablePorNombre();
+		
 	}
 	
 }

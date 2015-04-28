@@ -26,21 +26,29 @@ public class ClienteBusqueda {
 		
 		ArrayList<Cliente> todosTrue = getInstance().getByEstadoTrue();
 		for (Cliente registro : todosTrue) {
-			if (registro.equals(item) == true)
+			if (registro.equals(item))
 				return registro.getId();
 		}
 		return (long) 0;
 	}
 	public ArrayList<Cliente> getByNombre(String nombre,String apellido){
 		ArrayList<Cliente> todos = (ArrayList<Cliente>) ClienteDao.getInstance().getAllByName(nombre, apellido);
-		return todos;
+		ArrayList<Cliente> rta = new ArrayList<Cliente>();
+		
+		for (Cliente item : todos) {
+			if (item.isEstado()){
+				rta.add(item);
+			}
+				
+		}
+		return rta;
 	}
-	public ArrayList<Cliente> getByCUIL(String cuil){
+	public ArrayList<Cliente> getByCUITCUIL(String cuil){
 		ArrayList<Cliente> todos = (ArrayList<Cliente>) ClienteDao.getInstance().getAll();
 		ArrayList<Cliente> rta = new ArrayList<Cliente>();
 		
 		for (Cliente item : todos) {
-			if (item.getCUITCUIL() == cuil)
+			if (item.getCUITCUIL().equals(cuil))
 				rta.add(item);
 		}
 		return rta;

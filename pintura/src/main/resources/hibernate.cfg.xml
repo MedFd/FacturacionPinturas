@@ -11,9 +11,9 @@
 		<property name="show_sql">true</property>
 		
 		<!-- ESTO CREA LA BASE A PARTIR DE LAS ENTIDADES -->
-		 <property name="hibernate.hbm2ddl.auto">create</property>
+		 <property name="hibernate.hbm2ddl.auto">update</property>
 		<mapping class="com.facturacion.entitys.Proveedor"></mapping>
-		<!-- <mapping class="edu.utn.dto.Vehiculo"></mapping> -->
+		<mapping class="com.facturacion.entitys.Cliente"></mapping>
 		
 	</session-factory>
 </hibernate-configuration>

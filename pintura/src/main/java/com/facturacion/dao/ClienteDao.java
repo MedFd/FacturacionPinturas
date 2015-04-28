@@ -114,13 +114,16 @@ public class ClienteDao {
 		Session session = HibernateUtil.getSession();
 		List<Cliente> lista = new ArrayList<Cliente>();
 		try {
-			lista = session.createQuery("from entidades.Cliente c"+
-					"WHERE nombre LIKE ' " + nombre +" %' OR" +
-					"nombre LIKE '% " + nombre +" %' OR" +
-					"nombre LIKE '% " + nombre +" ' AND"
-							+ "apellido LIKE ' "+apellido+"%' OR"
-							+ "apellido LIKE '% "+apellido+" %' OR"
-							+ "apellido LIKE '% " +apellido+ " ' "
+			lista = session.createQuery("from com.facturacion.entitys.Cliente "+
+					"WHERE nombre LIKE '" + nombre +"%' OR " +
+					"nombre LIKE '%" + nombre +"%' OR " +
+					"nombre LIKE '%"+ nombre +"' OR "
+							+ "apellido LIKE '"+apellido+"%' OR "
+							+ "apellido LIKE '%"+apellido+" %' OR "
+							+ "apellido LIKE '%" +apellido+ "' "
+							
+
+					
 					).list();
 			
 		} catch (Exception e) {

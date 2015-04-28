@@ -2,45 +2,43 @@ package com.facturacion.formulario.cliente;
 
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 import com.facturacion.dao.ClienteDao;
 import com.facturacion.entitys.Cliente;
 
-public class Form_ClienteBaja {
+public class Form_ClienteBaja extends Form_Cliente {
 	
 	
 	
-	public void modificarEstado(String cuit){
+	public void modificarEstado(final Form_Cliente formC){
 
+		JTable tablaCuil = formC.table;
 		ArrayList<Cliente> lista = (ArrayList<Cliente>) ClienteDao.getInstance().getAll();
-		for(Cliente cliente : lista){
-				
-			if(cliente.getCUITCUIL().equals(cuit)){
-				
-				if(cliente.isEstado()){
-					bajaCliente(cliente);
-					//MOSTRAR MENSAJE SE DESACTIVO CLIENTE
-				}else{
-					altaCliente(cliente);
-					//MOSTRAR MENSAJE SE SACTIVO CLIENTE
+		try{
+			for(Cliente cliente : lista){
+				if(cliente.getCUITCUIL().equals(tablaCuil.getValueAt(tablaCuil.getSelectedRow(), 0).toString())){
+						bajaCliente(cliente);
+						actualizar(formC);
 				}
-
 			}
+		}catch(Exception ex){
+			ex.printStackTrace();
 		}
+		
 	}
 	
 	
 	/*
-	 * BAJA Y ALTA DE CLIENTE DEVUELVE UN BOOLEAN
+	 * BAJA y ACTUALIZACION DEL FORM ANTERIOR
 	 */
 	public void bajaCliente(Cliente cliente){	
 		cliente.setEstado(false);
 		ClienteDao.getInstance().update(cliente);
 	}
-	public void altaCliente(Cliente cliente){
-		cliente.setEstado(true);
-		ClienteDao.getInstance().update(cliente);
+	private void actualizar(Form_Cliente p ){
+		p.llenarJtablePorNombre();
+		
 	}
 	
 }

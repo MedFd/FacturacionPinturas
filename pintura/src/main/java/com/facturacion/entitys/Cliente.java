@@ -75,6 +75,30 @@ public class Cliente implements Serializable  {
 		this.deuda=Float.parseFloat(cliente.getDeuda());
 		this.estado=cliente.getEstado();
 	}
+	/*
+	 * 
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Cliente other = (Cliente) obj;
+		if (CUITCUIL == null) {
+			if (other.CUITCUIL != null) {
+				return false;
+			}
+		} else if (!CUITCUIL.equals(other.CUITCUIL)) {
+			return false;
+		}
+		return true;
+	}
 	
 	/*
 	 * GET AND SET

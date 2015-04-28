@@ -34,6 +34,17 @@ public class ProveedorBusqueda {
 		}
 		return (long) 0;
 	}
+	
+	public ArrayList<Proveedor> buscarPorCUITCUIL(String cuil){
+		ArrayList<Proveedor> todos = (ArrayList<Proveedor>) ProveedorDao.getInstance().getAll();
+		ArrayList<Proveedor> rta = new ArrayList<Proveedor>();
+		
+		for (Proveedor item : todos) {
+			if (item.getClave().equals(cuil))
+				rta.add(item);
+		}
+		return rta;
+	}
 
 	/**
 	 * obtener todos los registros segun su estado true-false
@@ -53,6 +64,7 @@ public class ProveedorBusqueda {
 		}
 		return rta;
 	}
+	
 	
 	/**
 	 * obtener todos los registros que estan activados
